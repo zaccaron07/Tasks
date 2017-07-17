@@ -6,9 +6,11 @@ module.exports = app => {
 	app.post("/token", (req, res) => {
 		if(req.body.email && req.body.password) {
 			const email = req.body.email;
-			const password = req.body.email;
+			const password = req.body.password;
+			console.log("Entrou; Email : " + email + " Senha : " + password);
 			Users.findOne({where: {email: email}})
 				.then(user => {
+					console.log("achou usuario")
 					if(Users.isPassword(user.password, password)) {
 						const payload = {id: user.id};
 						res.json({
@@ -19,7 +21,10 @@ module.exports = app => {
 						res.sendStatus(401);
 					}
 				})
-				.catch(error => res.sendStatus(401));
+				.catch(function(error) {
+					console.log("Erro : "+error);
+					res.sendStatus((401));
+				})
 		} else  {
 			res.sendStatus(401);
 		}
