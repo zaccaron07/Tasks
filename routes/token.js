@@ -10,13 +10,12 @@ module.exports = app => {
 			console.log("Entrou; Email : " + email + " Senha : " + password);
 			Users.findOne({where: {email: email}})
 				.then(user => {
-					console.log("achou usuario")
+					console.log("achou usuario token")
 					if(Users.isPassword(user.password, password)) {
 						const payload = {id: user.id};
 						res.json({
 							token: jwt.encode(payload, cfg.jwtSecret)
 						});
-						console.log(token)
 					} else {
 						res.sendStatus(401);
 					}

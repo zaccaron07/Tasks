@@ -4,7 +4,7 @@
   "description": "API Ntask",
   "main": "index.js",
   "scripts": {
-    "start": "npm run apidoc && babel-node index.js babel-preset-es2015 babel-preset-stage-2",
+    "start": "babel-node index.js babel-preset-es2015 babel-preset-stage-2",
     "clusters": "babel-node cluster.js babel-preset-es2015 babel-preset-stage-2",
     "test": "set NODE_ENV=test&& mocha test/**/*.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc"

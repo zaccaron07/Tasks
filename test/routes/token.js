@@ -10,7 +10,7 @@ describe("Routes: Token", () => {
           password: "12345"
         }))
         .then(() => done());
-    });
+    
     });
     describe("status 200", () => {
       it("returns authenticated user token", done => {
@@ -21,6 +21,7 @@ describe("Routes: Token", () => {
           })
           .expect(200)
           .end((err, res) => {
+            console.log(res.body);
             expect(res.body).to.include.keys("token");
             done(err);
           });
@@ -57,5 +58,5 @@ describe("Routes: Token", () => {
           });
       });
     });
-  
+  });
 });

@@ -6,8 +6,8 @@ module.exports = app => {
 	const Users = app.db.models.Users;
 	const cfg = app.libs.config;
 	const opts = {};
-	opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
 	opts.secretOrKey = cfg.jwtSecret;
+	opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
 	const strategy = new Strategy(opts,
 		(payload, done) => {
 			Users.findById(payload.id)
@@ -18,6 +18,7 @@ module.exports = app => {
 							email: user.email
 						});
 					}
+					console.log("Erro nao achou usuario");
 					return done(null, false);
 				})
 				.catch(error => done(error, null));

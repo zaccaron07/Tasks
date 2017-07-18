@@ -5,7 +5,7 @@ module.exports = app => {
 		.all(app.auth.authenticate())
 		.get((req, res) => {
 			Tasks.findAll({
-				where: {user_id: req.user.id}
+				where: {UserId: req.user.id}
 			})
 			.then(result => res.json(result))
 			.catch(error => {
